@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getter dan setter soal no 6</title>
+</head>
+<body>
+    <script>
+       class Employee {
+    constructor(nama, gaji) {
+        this.nama = nama; 
+        this.gaji = gaji;
+    }
+
+    // Getter untuk nama
+    get Pegawai() {
+        return this.nama;
+    }
+
+    // Setter untuk nama
+    set Pegawai(value) {
+        if (typeof value !== 'string') {
+            console.log("Nama pegawai harus valid");   
+        }else{
+        this.nama = value;
+        }
+    }
+
+    // Getter untuk gaji
+    get Gaji() {
+        return this.gaji;
+    }
+
+    // Setter untuk gaji
+    set Gaji(value) {
+        if (value <= 0) {
+          console.log("Gaji harus ada"); 
+        }
+        else{
+            this.gaji = value;}
+    }
+
+    // metode menghitung gaji tahunan
+    hitungGaji() {
+        console.log(`${this.nama} Gaji bulanannya ${this.gaji} jt`);
+        const gajiTahunan = this.gaji *= 12;
+        console.log(`Gaji tahunan ${gajiTahunan}`);
+    }
+}
+
+class Manager extends Employee {
+    constructor(nama, gaji, departemen) {
+        super(nama, gaji);
+        this.departemen = departemen;
+    }
+    // getter dan setter untuk menampilkan departemen nya
+    get Departemen() {
+        return this.departemen;
+    }
+    set Departemen(value) {
+        this.departemen = value;
+    }
+
+    // metode menghitung gaji jika dapat bonus 10%
+    hitungGaji() {
+        super.hitungGaji();
+        console.log(` departemen ${this.departemen}`); 
+        // membuat instance untuk menyimpan parameter gaji bonus 10%
+        const bonus = this.gaji *= 0.10;                                     
+        console.log(`Bonus 10% menjadi ${bonus}`); 
+    }
+}
+
+
+
+    const person1 = new Employee();
+     person1.Pegawai = "Davina";
+     person1.Gaji = 4;
+     console.log(person1.Pegawai);
+     console.log(person1.Gaji);
+     person1.hitungGaji();
+     
+    const person2 = new Manager();
+    person2.Pegawai = "Dani";
+    person2.Gaji = 0;    
+    // output undefined
+    person2.Departemen = "Marketing"
+    console.log(person2.Pegawai);
+    console.log(person2.Gaji);
+    console.log(person2.Departemen);
+    
+    person2.hitungGaji();
+ 
+
+    </script>
+</body>
+</html>

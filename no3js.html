@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getter dan setter soal no 4</title>
+</head>
+<body>
+    <script>
+        // Membuat parent class Bank
+        class Bank {
+            constructor(namaBank) {
+                this.namaBank = namaBank;
+                this._kantorCabang = new Set(); // Menggunakan Set untuk menyimpan cabang
+            }
+
+            // Getter untuk kantorCabang
+            get kantorCabang() {
+                return Array.from(this._kantorCabang); // Mengembalikan array dari Set
+            }
+
+            // Setter untuk menambah cabang
+            set tambahCabang(cabangBaru) {
+                if (this._kantorCabang.has(cabangBaru)) {
+                    console.log(`Cabang "${cabangBaru}" sudah ada. Silakan gunakan nama lain.`);
+                } else {
+                    this._kantorCabang.add(cabangBaru);
+                    console.log(`Cabang baru "${cabangBaru}" telah ditambahkan.`);
+                }
+            }
+
+            // Metode hapus cabang
+            hapusCabang(cabangDihapus) {
+                if (this._kantorCabang.has(cabangDihapus)) {
+                    this._kantorCabang.delete(cabangDihapus);
+                    console.log(`Cabang "${cabangDihapus}" telah dihapus.`);
+                } else {
+                    console.log(`Cabang "${cabangDihapus}" tidak ditemukan.`);
+                }
+            }
+
+            // Metode menampilkan semua cabang
+            tampilkanSemuaCabang() {
+                if (this.kantorCabang.length === 0) {
+                    console.log(`Bank ${this.namaBank} belum memiliki cabang.`);
+                } else {
+                    console.log(`Cabang-cabang Bank ${this.namaBank}:`);
+                    this.kantorCabang.forEach(cabang => {
+                        console.log('-', cabang);
+                    });
+                }
+            }
+        }
+
+        // Membuat instance dari class Bank
+        const bankSaya = new Bank("Bank Kita");
+
+        // Menambahkan beberapa cabang
+        bankSaya.tambahCabang = "Cabang Utama";
+        bankSaya.tambahCabang = "Cabang Jakarta";
+        bankSaya.tambahCabang = "Cabang Bandung";
+
+        // Coba menambahkan cabang dengan nama yang sama
+        bankSaya.tambahCabang = "Cabang Jakarta"; // Ini akan menunjukkan pesan kesalahan
+
+        // Menampilkan semua cabang
+        bankSaya.tampilkanSemuaCabang();
+
+        // Menghapus satu cabang
+        bankSaya.hapusCabang("Cabang Jakarta");
+
+        // Menampilkan semua cabang setelah penghapusan
+        bankSaya.tampilkanSemuaCabang();
+    </script>
+</body>
+</html>

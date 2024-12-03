@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getter dan Setter Soal No 1</title>
+</head>
+<body>
+    <script>
+        class Person {
+            constructor(Firstname, Lastname, Age) {
+                this.Firstname = Firstname;
+                this.Lastname = Lastname;
+                this.Age = Age;
+            }
+     
+            get first() {
+                return this.Firstname;
+            }
+            set first(value) {
+                if (value.length === 0) {
+                    console.log("harus diisi");
+                } else {
+                    this.Firstname = value;
+                }
+            }
+
+            get last() {
+                return this.Lastname;
+            }
+            
+            set last(value) {
+                if (value.length === 0) {
+                    console.log("harus diisi");
+                } else {
+                    this.Lastname = value;
+                }
+            }
+
+            get age() {
+                return this.Age;
+            }
+            
+            set age(value) {
+                if (value < 0) {
+                    console.log("HARAP DIISI"); 
+                } else {
+                    this.Age = value;
+                }
+            }
+      
+            ShowDetail() {
+                console.log(`hai mass bro namaku ${this.Firstname} ${this.Lastname} umur saya ${this.Age} tahun`);
+            }
+        }
+
+        const person1 = new Person();
+        person1.first = "ambatukam";
+        console.log(person1.first);
+
+        person1.last = "rahull";
+        console.log(person1.last);
+
+        person1.age = 16; 
+        console.log(person1.age);
+
+        person1.ShowDetail(); 
+    </script>
+</body>
+</html>

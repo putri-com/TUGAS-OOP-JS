@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getter dan setter soal no 2</title>
+</head>
+<body>
+    <script>
+         class PersegiPanjang {
+        constructor(panjang, lebar) {
+        this.panjang = panjang;
+        this.lebar = lebar;
+    }
+//  membuat pengecekan melaui 
+    get panjangp() {
+      return this.panjang;
+    }
+
+    set panjangp(value){
+        if (value < 0){
+            console.log("Ukuran tidak boleh kurang dari 0"); 
+        }
+        else{
+            this.panjang = value;
+        }
+    }
+
+    set lebarp(value){
+    if (value < 0){
+            console.log("Ukuran tidak boleh kurang dari 0"); 
+        }
+        else{
+            this.lebar = value;
+        }
+}
+
+get lebarp(){
+    return this.lebar
+}
+// methode
+    hitungLuas() {
+        return this.panjang * this.lebar;
+    }
+
+    hitungKeliling() {
+        return 2 * (this.panjang + this.lebar);
+    }
+}
+
+// Membuat instance class PersegiPanjang
+const persegiPanjang = new PersegiPanjang();
+persegiPanjang.panjangp = 5;
+console.log(persegiPanjang.panjangp);
+
+
+persegiPanjang.lebarp = 6;
+console.log(persegiPanjang.lebarp);
+
+// Menghitung luas dan kelilingnya
+// memanggil instance dan method nya
+console.log("Luas: " + persegiPanjang.hitungLuas());   
+console.log("Keliling: " + persegiPanjang.hitungKeliling());
+    </script>
+</body>
+</html>\

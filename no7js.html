@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getter dan setter soal no 8</title>
+</head>
+<body>
+    <script>
+        class AkunBank {
+    constructor(noRek, namaNasabah, saldo) {
+        this.NoRek = noRek; 
+        this.NamaNasabah = namaNasabah; 
+        this.Saldo = saldo; 
+    }
+
+    // Getter dan setter untuk noRek
+    get NoRek() {
+        return this._noRek;  
+    }
+
+    set NoRek(value) {
+        if (typeof value !== 'number') {
+            console.error('Nomor rekening harus berupa angka');
+            return;
+        }
+        this._noRek = value; // Simpan nomor rekening di variabel privat
+    }
+
+    // Getter dan setter untuk namaNasabah
+    get NamaNasabah() {
+        return this._namaNasabah;
+    }
+
+    set NamaNasabah(value) {
+        if (typeof value !== 'string') {
+            console.error("Masukkan nama nasabah dengan valid");
+            return;
+        }
+        if (value === this._namaNasabah) {
+            console.error('Nama nasabah ini sudah tersedia');
+            return;
+        }
+        this.namaNasabah = value; 
+    }
+
+    // Getter dan setter untuk saldo
+    get Saldo() {
+        return this.saldo; 
+    }
+
+    set Saldo(jumlah) {
+        if (jumlah < 0) {
+            console.error("Saldo tidak boleh negatif");
+            return;
+        }
+        this.saldo = jumlah; 
+    }
+
+    // Metode untuk menyetor uang
+    // menggunakan setter saldo
+    menyetor(jumlah) {
+        this.Saldo += jumlah; 
+        console.log(`Uang sebesar ${jumlah} disetorkan. Saldo sekarang: ${this.Saldo}`);
+    }
+
+    // Metode untuk menarik uang
+    menarik(jumlah) {
+        if (jumlah > this.Saldo) {
+            console.log(`${this.NamaNasabah} Saldo tidak cukup untuk menarik ${jumlah}. Saldo sekarang: ${this.Saldo}`);
+        } else {
+            this.Saldo -= jumlah; 
+            console.log(`Uang sebesar ${jumlah} ditarik. Saldo sekarang: ${this.Saldo}`);
+        }
+    }
+
+    // Metode untuk mentransfer uang
+    transfer(jumlah) {
+        if (jumlah > this.Saldo) {
+            console.log(`Saldo tidak cukup untuk di transfer sebanyak ${jumlah}. Saldo anda sekarang: ${this.Saldo}`);
+        } else {
+            this.Saldo -= jumlah; 
+            console.log(`Uang sebesar ${jumlah} telah ditransfer!. Saldo anda sekarang: ${this.Saldo}`);
+        }
+    }
+}
+
+
+const rekening = new AkunBank(121, "Firman", 200); 
+console.log(rekening.NamaNasabah); 
+console.log(rekening.NoRek); 
+console.log(rekening.Saldo); 
+
+rekening.menyetor(500);
+rekening.menarik(200); 
+rekening.transfer(100);
+
+    </script>
+</body>
+</html>

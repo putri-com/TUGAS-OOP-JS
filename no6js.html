@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getter dan setter soal no 7</title>
+</head>
+<body>
+    <script>
+        class Product {
+    constructor(IdProduct, nama, harga) {
+        this.IdProduct = IdProduct;
+        this.nama = nama; 
+        this.harga = harga; 
+    }
+
+
+    get Nama() {
+        return this.nama;
+    }
+
+  
+    set Nama(value) {
+        if (typeof value !== 'string') {
+           console.log("masukan nama produk dengan valid");
+        }
+        else{
+        this.nama = value;
+        }
+    }
+
+  
+    get Harga() {
+        return this.harga;
+    }
+
+    
+    set Harga(value) {
+        if (typeof value !== 'number') {
+            console.log("masukan harga yang valid"); 
+        }
+        else{
+            this.harga = value;}
+    }
+
+    
+    Hitungproduk(kuantitas) {
+        return kuantitas * this.harga;
+    }
+}
+
+// membuat subclass dengan override
+class ElektronikProduct extends Product {
+    constructor(IdProduct, nama, harga, garansi) {
+        super(IdProduct, nama, harga);
+        this.garansi = garansi;
+    
+    }
+
+    Hitungproduk(kuantitas) {
+        return super.Hitungproduk(kuantitas);
+    }
+}
+
+// membuat instance
+
+    const product1 = new ElektronikProduct();
+    product1.Nama = "setrika";
+    product1.harga = 50000;
+    console.log(product1.Nama);
+    console.log(product1.Harga);
+    const pembelian = product1.Hitungproduk(2);
+    console.log("Total " + pembelian);
+    
+
+    
+
+
+        </script>
+</body>
+</html>
